@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../static/js/jquery.js"></script>
+    <script>
+        function loginHandler() {
+                $('#login').click(function () {
+                    var username = $('#username').val();
+                    var password = $('#password').val();
+                    console.log(username);
+                    console.log(password);
+                })
+            }
+
+        var logio = {
+          'loginHandler': loginHandler,
+        };
+
+        //main func start
+        $(function () {
+            logio.loginHandler()
+        })
+
+    </script>
+</head>
+<body>
+<h1>HELLO WORLD!</h1>
+
+
+<form>
+    USERNAME: <input type="text", id="username">
+    PASSWORD: <input type="password", id="password">
+    <!--<input type="submit", value="LOGIN", id="login">-->
+</form>
+    <button id="login">LOGIN</button>
+</body>
+</html>
+
