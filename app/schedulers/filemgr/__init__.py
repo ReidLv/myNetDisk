@@ -6,3 +6,10 @@
 # @File    : __init__.py.py
 # @Software: PyCharm
 # @license : Copyright(C), ChangYang Technology Co. Ltd.
+from flask import Blueprint
+
+
+filemgr_blueprint = Blueprint('filemgr', __name__)
+
+
+from . import filemgr

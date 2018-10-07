@@ -11,6 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from config import config, LOGIN_MANAGER_CONFIG
 
+
 db = SQLAlchemy()
 login_manager = LoginManager()
 
@@ -31,9 +32,11 @@ def create_app(config_name):
     db.app = app    # solved    RuntimeError: No application found
 
 
+    from app.schedulers.logio import logio_blueprint
+    app.register_blueprint(logio_blueprint)
 
-
-
+    from app.schedulers.filemgr import filemgr_blueprint
+    app.register_blueprint(filemgr_blueprint, url_prefix='/filemgr')
 
 
 

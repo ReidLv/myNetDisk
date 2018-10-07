@@ -6,21 +6,61 @@
     <script type="text/javascript" src="../static/js/jquery.js"></script>
     <script>
         function loginHandler() {
-                $('#login').click(function () {
-                    var username = $('#username').val();
-                    var password = $('#password').val();
-                    console.log(username);
-                    console.log(password);
+            $('#login').click(function () {
+                var username = $('#username').val();
+                var password = $('#password').val();
+                console.log(username);
+                console.log(password);
+                $.ajax({
+                    'url': '/login',
+                    'type': 'post',
+                    'data': {'username': username, 'password': password},
+                    'success': function (res) {
+                        switch (res.status) {
+                            case 0:
+                                alert(res.msg);
+                                break;
+                            case 1:
+                                location.href = '/filemgr'
+                                break;
+                        }
+                    }
                 })
-            }
+            })
+        };
+        function signupHandler() {
+            $('#signup').click(function () {
+                var username = $('#username').val();
+                var password = $('#password').val();
+                $.ajax({
+                    'url': '/signup',
+                    'type': 'post',
+                    'data': {'username': username, 'password': password},
+                    'success': function (res) {
+                        alert(res.msg);
+                        //switch (res.status) {
+                        //    case 0:
+                        //        alert(res.msg);
+                        //        break;
+                        //    case 1:
+                        //        alert(res.msg);
+                        //        break;
+                        //}
+                    }
+                })
+
+            })
+        }
 
         var logio = {
-          'loginHandler': loginHandler,
+            'loginHandler': loginHandler,
+            'signupHandler': signupHandler,
         };
 
         //main func start
         $(function () {
-            logio.loginHandler()
+            logio.loginHandler();
+            logio.signupHandler();
         })
 
     </script>
@@ -30,11 +70,12 @@
 
 
 <form>
-    USERNAME: <input type="text", id="username">
-    PASSWORD: <input type="password", id="password">
+    USERNAME: <input type="text" , id="username">
+    PASSWORD: <input type="password" , id="password">
     <!--<input type="submit", value="LOGIN", id="login">-->
 </form>
-    <button id="login">LOGIN</button>
+<button id="login">LOGIN</button>
+<button id="signup">SIGNUP</button>
 </body>
 </html>
 

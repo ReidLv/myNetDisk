@@ -6,8 +6,10 @@
 # @File    : config.py
 # @Software: PyCharm
 # @license : Copyright(C), ChangYang Technology Co. Ltd.
+import os
 
 
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SECRET_KEY = '- secret key -'
     SESSION_TYPE = 'filesystem'
@@ -22,8 +24,9 @@ class DevelopmentConfig(Config):
     account = 'mysql'
     password = 'cy888888'
     ip = '127.0.0.1'
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{account}:{password}@{ip}/netdisk'.format(account=account, password=password, ip=ip)
-    SQLALCHEMY_BINDS = {}
+    # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{account}:{password}@{ip}/netdisk'.format(account=account, password=password, ip=ip)
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'databases/user.db')
+    # SQLALCHEMY_BINDS = {}
 
 
 config = {

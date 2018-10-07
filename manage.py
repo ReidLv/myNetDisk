@@ -8,19 +8,24 @@
 # @license : Copyright(C), ChangYang Technology Co. Ltd.
 from app import create_app
 from flask import render_template
+from flask_script import Manager, Shell
+from app import db
 
+
+def make_shell_context():
+   return dict(app=app, db=db)
 
 app = create_app('development')
+manager = Manager(app)
 
-
-
-@app.route('/')
-def test():
-    return render_template('login.html')
-
+manager.add_command('shell', Shell(make_context=make_shell_context))
 
 
 
 
 
-app.run()
+
+
+
+
+manager.run()

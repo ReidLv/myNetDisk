@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../static/js/jquery.js"></script>
+    <script>
+        function filemgrHandler() {
+            $.ajax({
+                'url': '/filemgr/getinfo',
+                'method': 'get',
+                'success': function (res) {
+                    var str = '';
+                    var body = $('#files').children('tbody');
+                    $.each(res.files, function (k, v) {
+                        str += '<tr>';
+                        str += '<td class="value", id="value"><a href=/filemgr/download?file=' + v + '>' + v + '</a></td>';
+                        str += '</tr>';
+                    });
+                    body.html(str);
+                }
+            })
+        }
+        var filemgr = {
+            'filemgrHandler': filemgrHandler,
+        };
+
+        //main func start
+        $(function () {
+            filemgr.filemgrHandler()
+        })
+
+    </script>
+</head>
+<body>
+<h1>FILEMGR_HTML</h1>
+<table id="files">
+    <tbody></tbody>
+</table>
+
+<form action="/filemgr/upload" method="post" enctype="multipart/form-data">
+    <p>
+        <input type="file" name="file">
+        <input type =submit value="upload">
+    </p>
+</form>
+
+</body>
+</html>

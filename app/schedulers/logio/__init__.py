@@ -6,3 +6,10 @@
 # @File    : __init__.py.py
 # @Software: PyCharm
 # @license : Copyright(C), ChangYang Technology Co. Ltd.
+from flask import Blueprint
+
+
+logio_blueprint = Blueprint('logio', __name__)
+
+
+from . import logio
