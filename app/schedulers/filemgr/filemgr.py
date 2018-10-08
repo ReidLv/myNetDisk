@@ -14,7 +14,7 @@ def filemgr_():
 @filemgr.route('/getinfo')
 # @login_required
 def getinfo():
-    files = os.listdir('/home/atguigu/flaskspace/myNetDisk/files')
+    files = os.listdir(os.getcwd() + '/files')
     return jsonify(files=files)
 
 @filemgr.route('/download')
