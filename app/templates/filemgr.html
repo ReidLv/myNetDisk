@@ -5,7 +5,7 @@
     <title>Title</title>
     <script type="text/javascript" src="../static/js/jquery.js"></script>
     <script>
-        function filemgrHandler() {
+        function getFileHandler() {
             $.ajax({
                 'url': '/filemgr/getinfo',
                 'method': 'get',
@@ -13,7 +13,7 @@
                     var str = '';
                     var body = $('#files').children('tbody');
                     $.each(res.files, function (k, v) {
-                        str += '<tr>';
+                        str += '<tr bgcolor="#faebd7" align="left">';
                         str += '<td class="value", id="value"><a href=/filemgr/download?file=' + v + '>' + v + '</a></td>';
                         str += '</tr>';
                     });
@@ -21,20 +21,38 @@
                 }
             })
         }
+
+        function logoutHandler() {
+            $('#logout').click(function () {
+                $.ajax({
+                    'url': '/logout',
+                    'type': 'post',
+                    'success': function (res) {
+                        alert(res.msg);
+                        location.href = '/';
+                    }
+                })
+            })
+        }
+
         var filemgr = {
-            'filemgrHandler': filemgrHandler,
+            'getFileHandler': getFileHandler,
+        };
+        var logio = {
+            'logoutHandler': logoutHandler,
         };
 
         //main func start
         $(function () {
-            filemgr.filemgrHandler()
+            filemgr.getFileHandler();
+            logio.logoutHandler();
         })
 
     </script>
 </head>
 <body>
-<h1>FILEMGR_HTML</h1>
-<table id="files">
+<h1 align="right"><button id="logout">退出</button></h1>
+<table id="files" border="0.3" bgcolor="#7fffd4">
     <tbody></tbody>
 </table>
 

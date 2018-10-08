@@ -22,7 +22,7 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     account = 'mysql'
-    password = 'cy888888'
+    password = '12345678'
     ip = '127.0.0.1'
     # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{account}:{password}@{ip}/netdisk'.format(account=account, password=password, ip=ip)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'databases/user.db')

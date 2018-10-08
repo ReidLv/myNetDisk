@@ -7,25 +7,30 @@ import os
 
 
 @filemgr.route('/')
-# @login_required
+@login_required
 def filemgr_():
+    try:
+        print current_user.username
+    except Exception as e:
+        print e
     return render_template('filemgr.html')
 
 @filemgr.route('/getinfo')
-# @login_required
+@login_required
 def getinfo():
     files = os.listdir(os.getcwd() + '/files')
     return jsonify(files=files)
 
 @filemgr.route('/download')
-# @login_required
+@login_required
 def download():
+    print current_user.username
     file = request.args.get('file')
     return send_from_directory(os.getcwd(), 'files/'+file, as_attachment=True)
 
 
 @filemgr.route('/upload', methods=['POST'])
-# @login_required
+@login_required
 def upload():
     file = request.files['file']
     file.save(os.getcwd()+'/files/'+file.filename)
