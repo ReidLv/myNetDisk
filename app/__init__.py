@@ -17,7 +17,8 @@ login_manager = LoginManager()
 
 
 def create_app(config_name):
-    app = Flask(__name__)
+    print __name__, __file__
+    app = Flask(__name__, static_folder='../frontend/static', template_folder='../frontend/templates')
     app.config.from_object(config[config_name])
 
     login_manager.init_app(app)

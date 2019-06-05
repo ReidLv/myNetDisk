@@ -14,7 +14,7 @@ from app import db
 
 def make_shell_context():
    return dict(app=app, db=db)
-
+print __name__, __file__, 'this is manage.py'
 app = create_app('development')
 manager = Manager(app)
 
